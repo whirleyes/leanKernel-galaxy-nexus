@@ -5,7 +5,7 @@
 
 sed -i s/CONFIG_LOCALVERSION=\".*\"/CONFIG_LOCALVERSION=\"-leanKernel-${1}\"/ .config
 
-make ARCH=arm CROSS_COMPILE=/data/linaro/bin/arm-linux-gnueabihf- -j2
+make ARCH=arm CROSS_COMPILE=/data/linaro/android-toolchain-eabi/bin/arm-linux-androideabi- -j2
 
 cp arch/arm/boot/zImage mkboot/
 #sed -i s/CONFIG_LOCALVERSION=\".*\"/CONFIG_LOCALVERSION=\"\"/ .config
@@ -35,15 +35,15 @@ if [[ $1 != *dev* && $1 != *rc* ]]; then
 	cp /tmp/boot.img /tmp/boot-${1}.img
 	if [[ $1 == *exp* ]]; then
 	  if [[ $1 == *180* ]]; then
-	    mf="latest180"
+	    mf="latest180jb"
 	  elif [[ $1 == *230* ]]; then
-	    mf="latest230"
+	    mf="latest230jb"
 	  else
 	    mf="latestnotrim"
 	  fi
 	  edir="/exp"
 	else 
-	  mf="latest"
+	  mf="latestjb"
 	  edir=""
 	fi
 	echo "http://imoseyon.host4droid.com${edir}/boot-${1}.img $md5 ${1}" > /tmp/$mf
